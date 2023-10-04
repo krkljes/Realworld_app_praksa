@@ -8,12 +8,56 @@
     "password": "notsecret"
   },
   "urls": {
-    "baseUrl": "http://localhost:3000",
-    "loginUrl": "http://localhost:3000/signin"
+    "baseUrl": "http://localhost:3000/",
+    "loginUrl": "http://localhost:3000/signin",
+    "signUpUrl": "http://localhost:3000/signup"
   },
   "login": {
     "usernameField": "username",
     "passwordField": "password",
-    "submitButton": "[data-test='signin-submit']"
+    "submitButton": "[data-test='signin-submit']",
+    "errorMessageField": "[data-test='signin-error']",
+    "errorMessage": "Username or password is invalid",
+    "logout": "[data-test='sidenav-signout']"
+  },
+  "signUp": {
+    "firstName": "firstName",
+    "lastName": "lastName",
+    "username": "username",
+    "password": "password",
+    "confirmPassword": "confirmPassword",
+    "signUpButton": "[data-test='signup-submit']"
+  },
+  "validSignups": {
+    "signup1": {
+      "firstName": "Name1",
+      "lastName": "Lastname1",
+      "username": "user1",
+      "password": "password1",
+      "confirmPassword": "password1"
+    },
+    "signup2": {
+      "firstName": " ",
+      "lastName": " ",
+      "username": " ",
+      "password": "password1",
+      "confirmPassword": "password1"
+    }
+  },
+  "invalidSignups": {
+    "signup1": {
+      "firstName": "1",
+      "lastName": "1",
+      "username": "1",
+      "password": "1111",
+      "confirmPassword": "111"
+    },
+    "signup2": {
+      "firstName": "1",
+      "lastName": "1",
+      "username": "1",
+      "password": "111",
+      "confirmPassword": "111"
+    }
   }
 }

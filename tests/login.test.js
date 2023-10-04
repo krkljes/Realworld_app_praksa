@@ -28,7 +28,22 @@ describe('Login Test', function () {
     // Add assertions to verify successful login
     const currentUrl = await driver.getCurrentUrl();
 
-    assert.isTrue(currentUrl === 'http://localhost:3000/', 'Login was not successful');
+    assert.isTrue(currentUrl === loginPage.baseUrl, 'Login was not successful.');
 
   });
+
+  it('should display an error message for login', async function () {
+    const loginPage = new LoginPage(driver);
+
+    // Perform login
+    await loginPage.tryInvalidLogin();
+
+    // Add assertions to verify successful login
+    const errorMessage = await driver.findElement(loginPage.errorField);
+    const errorText = await errorMessage.getText();
+    assert.isTrue(errorText.includes(loginPage.errorMsg), 
+    'Error message not displayed for invalid login');
+
+  });
+
 });
