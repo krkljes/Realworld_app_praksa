@@ -1,23 +1,118 @@
 {
   "stats": {
-    "suites": 0,
-    "tests": 0,
-    "passes": 0,
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
     "pending": 0,
     "failures": 0,
-    "start": "2023-10-02T21:33:48.089Z",
-    "end": "2023-10-02T21:33:48.089Z",
-    "duration": 0,
-    "testsRegistered": 0,
-    "passPercent": null,
-    "pendingPercent": null,
+    "start": "2023-10-03T14:09:09.893Z",
+    "end": "2023-10-03T14:09:20.096Z",
+    "duration": 10203,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
     "skipped": 0,
     "hasSkipped": false
   },
   "results": [
-    false
+    {
+      "uuid": "134dc5f8-c7c3-4cfb-a16c-417c22d60352",
+      "title": "",
+      "fullFile": "C:\\Users\\Krkljes\\Desktop\\Realworld App Praksa\\Realworld_app_praksa\\tests\\login.test.js",
+      "file": "\\tests\\login.test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "35e470d8-7ed5-4b06-877f-ad650ee936d3",
+          "title": "Login Test",
+          "fullFile": "C:\\Users\\Krkljes\\Desktop\\Realworld App Praksa\\Realworld_app_praksa\\tests\\login.test.js",
+          "file": "\\tests\\login.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Login Test\"",
+              "fullTitle": "Login Test \"before all\" hook in \"Login Test\"",
+              "timedOut": false,
+              "duration": 1235,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Initialize the WebDriver and open the browser\ndriver = await new Builder().forBrowser('chrome').build();",
+              "err": {},
+              "uuid": "1bcf014f-2d04-4c8c-aeda-3fa0acb39a18",
+              "parentUUID": "35e470d8-7ed5-4b06-877f-ad650ee936d3",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"Login Test\"",
+              "fullTitle": "Login Test \"after all\" hook in \"Login Test\"",
+              "timedOut": false,
+              "duration": 37,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Quit the WebDriver after the test is complete\nawait driver.quit();",
+              "err": {},
+              "uuid": "9a871cd0-fdd5-445b-8904-04a4f453f4db",
+              "parentUUID": "35e470d8-7ed5-4b06-877f-ad650ee936d3",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "should log in successfully",
+              "fullTitle": "Login Test should log in successfully",
+              "timedOut": false,
+              "duration": 8926,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const loginPage = new LoginPage(driver);\n// Perform login\nawait loginPage.performLogin();\n// Add assertions to verify successful login\nconst currentUrl = await driver.getCurrentUrl();\nassert.isTrue(currentUrl === 'http://localhost:3000/', 'Login was not successful');",
+              "err": {},
+              "uuid": "3d5892e5-c69a-4e32-a9e4-18c0336d0654",
+              "parentUUID": "35e470d8-7ed5-4b06-877f-ad650ee936d3",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "3d5892e5-c69a-4e32-a9e4-18c0336d0654"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 8926,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 30000
+    }
   ],
   "meta": {
     "mocha": {

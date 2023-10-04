@@ -1,15 +1,19 @@
 {
-    "validUser": {
-      "username": "valid_username",
-      "password": "valid_password"
-    },
-    "invalidUser": {
-      "username": "invalid_username",
-      "password": "invalid_password"
-    },
-    "urls": {
-      "baseUrl": "https://example.com",
-      "loginPageUrl": "https://example.com/login"
-    }
+  "validUser": {
+    "username": "Tavares_Barrows",
+    "password": "s3cret"
+  },
+  "invalidUser": {
+    "username": "Tavares_Not_Barrows",
+    "password": "notsecret"
+  },
+  "urls": {
+    "baseUrl": "http://localhost:3000",
+    "loginUrl": "http://localhost:3000/signin"
+  },
+  "login": {
+    "usernameField": "username",
+    "passwordField": "password",
+    "submitButton": "[data-test='signin-submit']"
   }
-  
+}
