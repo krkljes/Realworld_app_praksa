@@ -1,8 +1,4 @@
-Certainly! Here's a README file for the provided files and scripts:
-
----
-
-# Selenium WebDriver Test Suite
+# Selenium WebDriver Tests
 
 This repository contains a test suite for automating login and signup functionality using Selenium WebDriver with JavaScript. The test suite is organized into two main test cases: Login Test and Sign Up Test.
 
