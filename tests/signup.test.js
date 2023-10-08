@@ -4,7 +4,7 @@ const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 
 chai.use(chaiAsPromised);
-const assert = chai.assert;
+const expect = chai.expect;
 
 describe('SignUp Test', function () {
   let driver;
@@ -19,7 +19,7 @@ describe('SignUp Test', function () {
     await driver.quit();
   });
 
-  it('should sign up successfully', async function () {
+  it('Valid signup test', async function () {
     const signUpPage = new SignUpPage(driver);
 
     // Perform signup
@@ -27,12 +27,11 @@ describe('SignUp Test', function () {
 
     // Add assertions to verify successful signup
     const currentUrl = await driver.getCurrentUrl();
-
-    assert.isTrue(currentUrl === signUpPage.loginUrl, 'Sign up was not successful');
+    expect(currentUrl).to.equal(signUpPage.loginUrl, "Sign up was not successful");
 
   });
 
-  it('signup button should be disabled', async function () {
+  it('Invalid signup test', async function () {
     const signUpPage = new SignUpPage(driver);
 
     // Perform signup
@@ -40,8 +39,7 @@ describe('SignUp Test', function () {
 
     // Add assertions to verify successful signup
     const signUpButton = await driver.findElement(signUpPage.singUpBtn);
-    assert.isTrue(await signUpButton.getAttribute('disabled') === 'true',
-    'Signup button is not disabled for invalid signup');
-   
+    expect(await signUpButton.getAttribute('disabled')).to.equal('true', 'Signup button is not disabled for invalid signup');
+    
   });
 });

@@ -1,0 +1,7 @@
+{
+  "url": {
+    "baseUrl": "http://localhost:3000/",
+    "loginUrl": "http://localhost:3000/signin",
+    "signUpUrl": "http://localhost:3000/signup"
+  }
+}
