@@ -1,21 +1,22 @@
 const { Builder, By, until } = require('selenium-webdriver');
 const BasePage = require('./BasePage');
-const testData = require('../config/testdata.json');
+const credentials = require('../config/credentials.json');
+const locators = require('../config/locators.json');
+const urls = require('../config/urls.json');
 
-const validUser = testData.validUser;
-const invalidUser = testData.invalidUser;
-const urls = testData.urls;
-const login = testData.login;
+const validUser = credentials.validUser;
+const invalidUser = credentials.invalidUser;
+const login = locators.login;
+const url = urls.url;
 
 class LoginPage extends BasePage {
   constructor(driver) {
     super(driver);
-    this.loginUrl = urls.loginUrl;
-    this.baseUrl = urls.baseUrl;
-    this.usernameField = By.id(login.usernameField);
-    this.passwordField = By.id(login.passwordField);
+    this.loginUrl = url.loginUrl;
+    this.baseUrl = url.baseUrl;
+    this.usernameField = By.css(login.usernameField);
+    this.passwordField = By.css(login.passwordField);
     this.loginButton = By.css(login.submitButton);
-    this.logoutButton = By.css(login.logout);
     this.errorField = By.css(login.errorMessageField);
     this.errorMsg = login.errorMessage;
   }
@@ -25,12 +26,11 @@ class LoginPage extends BasePage {
     await this.sendKeys(this.usernameField, validUser.username);
     await this.sendKeys(this.passwordField, validUser.password);
     await this.click(this.loginButton);
-    await this.driver.wait(until.urlIs(urls.baseUrl), 1000);
+    await this.waitForUrlToMatch(url.baseUrl);
   }
 
   async tryInvalidLogin() {
     await this.navigateTo(this.loginUrl);
-    await this.click(this.logoutButton);
     await this.sendKeys(this.usernameField, invalidUser.username);
     await this.sendKeys(this.passwordField, invalidUser.password);
     await this.click(this.loginButton);

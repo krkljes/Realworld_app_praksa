@@ -1,22 +1,24 @@
 const { Builder, By, until } = require('selenium-webdriver');
 const BasePage = require('./BasePage');
-const testData = require('../config/testdata.json');
+const credentials = require('../config/credentials.json');
+const locators = require('../config/locators.json');
+const urls = require('../config/urls.json');
 
-const validSignup1 = testData.validSignups.signup1;
-const invalidSignup1 = testData.invalidSignups.signup1;
-const urls = testData.urls;
-const signUp = testData.signUp;
+const validSignup1 = credentials.validSignups.signup1;
+const invalidSignup1 = credentials.invalidSignups.signup1;
+const url = urls.url;
+const signUp = locators.signUp;
 
 class SignUpPage extends BasePage {
   constructor(driver) {
     super(driver);
-    this.signUpUrl = urls.signUpUrl;
-    this.loginUrl = urls.loginUrl;
-    this.firstName = By.id(signUp.firstName);
-    this.lastName = By.id(signUp.lastName);
-    this.username = By.id(signUp.username);
-    this.password = By.id(signUp.password);
-    this.confirmPass = By.id(signUp.confirmPassword);
+    this.signUpUrl = url.signUpUrl;
+    this.loginUrl = url.loginUrl;
+    this.firstName = By.css(signUp.firstName);
+    this.lastName = By.css(signUp.lastName);
+    this.username = By.css(signUp.username);
+    this.password = By.css(signUp.password);
+    this.confirmPass = By.css(signUp.confirmPassword);
     this.singUpBtn = By.css(signUp.signUpButton);
   }
 
@@ -28,7 +30,7 @@ class SignUpPage extends BasePage {
     await this.sendKeys(this.password, validSignup1.password);
     await this.sendKeys(this.confirmPass, validSignup1.confirmPassword);
     await this.click(this.singUpBtn);
-    await this.driver.wait(until.urlIs(this.loginUrl), 1000);
+    await this.waitForUrlToMatch(this.loginUrl);
   }
 
   async tryInvalidSignUp() {
