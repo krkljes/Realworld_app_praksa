@@ -28,7 +28,7 @@ describe('Login Test', function () {
     // Add assertions to verify successful login
     const errorMessage = driver.wait(until.elementLocated(loginPage.errorField),2000);
     const errorText = await errorMessage.getText();
-    expect(errorText).to.equal(loginPage.errorMsg);
+    expect(errorText).to.equal(loginPage.errorMsg, "Invalid login test failed");
 
   });
 

@@ -26,6 +26,11 @@ class BasePage {
       throw error;
     });
   }
+  
+  getCurrentTimestamp() {
+    return Date.now().toString();
+  }
+  
 }
 
 module.exports = BasePage;

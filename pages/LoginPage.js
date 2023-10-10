@@ -26,7 +26,7 @@ class LoginPage extends BasePage {
     await this.sendKeys(this.usernameField, validUser.username);
     await this.sendKeys(this.passwordField, validUser.password);
     await this.click(this.loginButton);
-    await this.waitForUrlToMatch(url.baseUrl);
+    await this.waitForUrlToMatch(this.baseUrl);
   }
 
   async tryInvalidLogin() {

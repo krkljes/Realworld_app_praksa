@@ -2,6 +2,7 @@
   "url": {
     "baseUrl": "http://localhost:3000/",
     "loginUrl": "http://localhost:3000/signin",
-    "signUpUrl": "http://localhost:3000/signup"
+    "signUpUrl": "http://localhost:3000/signup",
+    "accountsUrl": "http://localhost:3000/bankaccounts"
   }
 }
