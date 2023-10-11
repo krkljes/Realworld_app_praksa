@@ -1,4 +1,4 @@
-const { Builder, By } = require('selenium-webdriver');
+const { Builder } = require('selenium-webdriver');
 const SignUpPage = require('../pages/SignUpPage');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
@@ -6,7 +6,7 @@ const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 
-describe('SignUp Test', function () {
+describe('SignUp Tests', function () {
   let driver;
 
   before(async function () {
@@ -34,10 +34,10 @@ describe('SignUp Test', function () {
   it('Invalid signup test', async function () {
     const signUpPage = new SignUpPage(driver);
 
-    // Perform signup
+    // Try to signup with invalid credentials
     await signUpPage.tryInvalidSignUp();
 
-    // Add assertions to verify successful signup
+    // Add assertions to verify the signup failed
     const signUpButton = await driver.findElement(signUpPage.singUpBtn);
     expect(await signUpButton.getAttribute('disabled')).to.equal('true', 'Signup button is not disabled for invalid signup');
     

@@ -1,4 +1,4 @@
-const { Builder, By, until } = require('selenium-webdriver');
+const { Builder } = require('selenium-webdriver');
 const AccountPage = require('../pages/AccountPage');
 const LoginPage = require('../pages/LoginPage');
 const chai = require('chai');
@@ -27,7 +27,7 @@ describe('Account tests', function () {
     await loginPage.performLogin();
     // Create account
     await accountPage.createBankAccount();
-    // Add assertions to verify successful login
+    // Add assertions to verify successful account creation
     const currentUrl = await driver.getCurrentUrl();
     expect(currentUrl).to.equal(accountPage.accountsUrl, "Account creation failed");
   });
@@ -37,9 +37,9 @@ describe('Account tests', function () {
     const accountPage = new AccountPage(driver);
     // Perform login
     await loginPage.performLogin();
-    // Create account
+    // Delete account
     await accountPage.findAndClickDeleteButtonByText();
-    // Add assertions to verify successful login
+    // Add assertions to verify successful deletion
     expect(accountPage.verifyText).to.satisfy((text) => {
       return text.includes("(Deleted)") || text.includes("DELETE");
     }, 'Associated text does not meet the expected conditions.');
