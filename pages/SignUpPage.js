@@ -1,4 +1,4 @@
-const { Builder, By, until } = require('selenium-webdriver');
+const { By } = require('selenium-webdriver');
 const BasePage = require('./BasePage');
 const credentials = require('../config/credentials.json');
 const locators = require('../config/locators.json');
@@ -22,6 +22,7 @@ class SignUpPage extends BasePage {
     this.singUpBtn = By.css(signUp.signUpButton);
   }
 
+  // Method to perform a sign-up operation with valid data
   async performSignUp() {
     await this.navigateTo(this.signUpUrl);
     await this.sendKeys(this.firstName, validSignup1.firstName);
@@ -33,6 +34,7 @@ class SignUpPage extends BasePage {
     await this.waitForUrlToMatch(this.loginUrl);
   }
 
+  // Method to simulate an invalid sign-up attempt
   async tryInvalidSignUp() {
     await this.navigateTo(this.signUpUrl);
     await this.sendKeys(this.firstName, invalidSignup1.firstName);
