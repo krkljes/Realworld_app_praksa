@@ -12,6 +12,7 @@ class AccountPage extends BasePage {
   constructor(driver) {
     super(driver);
     this.accountsUrl = url.accountsUrl;
+    this.account = account;
     this.accountBtn = By.css(accountLocator.accountButton);
     this.createAccBtn = By.css(accountLocator.createAccount);
     this.bankName = By.css(accountLocator.bankName);
@@ -28,8 +29,8 @@ class AccountPage extends BasePage {
     await this.click(this.accountBtn); // Click on the account button
     await this.click(this.createAccBtn); // Click on the "Create Account" button
     await this.sendKeys(this.bankName, Date.now().toString()); // Enter a dynamic bank name (timestamp)
-    await this.sendKeys(this.routingNum, account.routingNumber); // Enter the routing number from the 'account' object
-    await this.sendKeys(this.accountNum, account.accountNumber); // Enter the account number from the 'account' object
+    await this.sendKeys(this.routingNum, this.account.routingNumber); // Enter the routing number from the 'account' object
+    await this.sendKeys(this.accountNum, this.account.accountNumber); // Enter the account number from the 'account' object
     await this.click(this.saveAccBtn); // Click the "Save Account" button
   }
 

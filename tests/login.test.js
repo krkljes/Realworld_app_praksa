@@ -49,6 +49,12 @@ describe('Login Tests', function () {
     const errorText = await errorMessage.getText();
     expect(errorText).to.equal(loginPage.errorMsg, "Invalid login test failed");
 
+    //Additional context
+    addContext(this, `Found the url ${loginPage.loginUrl}`);
+    addContext(this, `Filled the username ${loginPage.invalidUsername}`);
+    addContext(this, `Filled the password ${loginPage.invalidPassword}`);
+    addContext(this, `Clicked on the button ${loginPage.loginButton}`);
+    addContext(this, `Received error message ${errorText}`);
   });
 
 });
