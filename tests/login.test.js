@@ -35,12 +35,10 @@ describe('Login Tests', function () {
     // Test Steps:
     addContext(this, 'Step 1: Open the web browser');
     addContext(this, 'Step 2: Navigate to the login page (' + loginPage.loginUrl + ')');
-    // Step 3: User Information Input
-    addContext(this, 'Step 3.1. Enter a valid username (' + loginPage.username + ') in the username input field');
-    addContext(this, 'Step 3.2. Enter a valid password (' + loginPage.password + ') in the password input field');
-    // Step 4: Submit the Login Form
-    addContext(this, 'Step 4.1. Click on the "SIGN IN" button');
-    addContext(this, 'Step 4.2. Wait for the URL to match (' + loginPage.baseUrl + ')');
+    addContext(this, 'Step 3: Enter a valid username (' + loginPage.username + ') in the username input field');
+    addContext(this, 'Step 4: Enter a valid password (' + loginPage.password + ') in the password input field');
+    addContext(this, 'Step 5: Click on the "SIGN IN" button');
+    addContext(this, 'Step 6: Wait for the URL to match (' + loginPage.baseUrl + ')');
   });
 
   it('Unsuccessful Login Process Test', async function () {
@@ -60,12 +58,10 @@ describe('Login Tests', function () {
     // Test Steps:
     addContext(this, 'Step 1: Open the web browser');
     addContext(this, 'Step 2: Navigate to the login page (' + loginPage.loginUrl + ')');
-    // Step 3: User Information Input
-    addContext(this, 'Step 3.1. Enter a valid username (' + loginPage.username + ') in the username input field');
-    addContext(this, 'Step 3.2. Enter a valid password (' + loginPage.password + ') in the password input field');
-    // Step 4: Attempt to Submit the Login Form
-    addContext(this, 'Step 4.1. Click on the "SIGN IN" button');
-    addContext(this, 'Step 4.2. Error message is displayed (' + errorText + ')');
+    addContext(this, 'Step 3: Enter a valid username (' + loginPage.username + ') in the username input field');
+    addContext(this, 'Step 4: Enter a valid password (' + loginPage.password + ') in the password input field');
+    addContext(this, 'Step 5: Click on the "SIGN IN" button');
+    addContext(this, 'Step 6: Error message is displayed (' + errorText + ')');
   });
 
 });
