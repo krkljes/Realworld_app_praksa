@@ -14,6 +14,7 @@ class SignUpPage extends BasePage {
     super(driver);
     this.signUpUrl = url.signUpUrl;
     this.loginUrl = url.loginUrl;
+    this.baseUrl = url.baseUrl;
     this.validSignup = validSignup1;
     this.invalidSignup = invalidSignup1;
     this.firstName = By.css(signUp.firstName);
