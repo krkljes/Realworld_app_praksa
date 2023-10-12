@@ -21,7 +21,7 @@ describe('Account tests', function () {
     await driver.quit();
   });
 
-  it('Create account test', async function () {
+  it('Successful Bank Account Creation Process Test', async function () {
     const loginPage = new LoginPage(driver);
     const accountPage = new AccountPage(driver);
     // Perform login
@@ -30,23 +30,32 @@ describe('Account tests', function () {
     await accountPage.createBankAccount();
     // Add assertions to verify successful account creation
     const currentUrl = await driver.getCurrentUrl();
-    expect(currentUrl).to.equal(accountPage.accountsUrl, "Account creation failed");
+    expect(currentUrl).to.equal(accountPage.accountsUrl, "Bank Account Creation Process Test failed");
 
-    //Additional context
-    addContext(this, `Found the url ${loginPage.loginUrl}`);
-    addContext(this, `Filled the username ${loginPage.username}`);
-    addContext(this, `Filled the password ${loginPage.password}`);
-    addContext(this, `Clicked on the button ${loginPage.loginButton}`);
-    addContext(this, `The url matched ${loginPage.baseUrl}`);
-    addContext(this, `Clicked on the button ${accountPage.accountBtn}`);
-    addContext(this, `Clicked on the button ${accountPage.createAccBtn}`);
-    addContext(this, `Created a dynamic bank name`);
-    addContext(this, `Created a routing number ${accountPage.account.routingNumber}`);
-    addContext(this, `Created an account number ${accountPage.account.accountNumber}`);
-    addContext(this, `Clicked on the button ${accountPage.saveAccBtn}`);
+    // Additional context
+    addContext(this, 'Test Case Title: Successful Bank Account Creation Process Test');
+    addContext(this, 'Test Case Description: Verify that a user can successfully create a bank account on the website');
+    // Test Steps:
+    addContext(this, 'Step 1: Open the web browser');
+    addContext(this, 'Step 2: Navigate to the login page (' + loginPage.loginUrl + ')');
+    // Step 3: User Information Input
+    addContext(this, 'Step 3.1. Enter a valid username (' + loginPage.username + ') in the username input field');
+    addContext(this, 'Step 3.2. Enter a valid password (' + loginPage.password + ') in the password input field');
+    addContext(this, 'Step 3.3. Click the "SIGN IN" button');
+    addContext(this, 'Step 3.4. Wait for the URL to match (' + loginPage.baseUrl + ')');
+    // Step 4: Navigate to the bank account page
+    addContext(this, 'Step 4: Click on the "Bank Accounts" button to access the account management page');
+    // Step 5: Bank Account Creation
+    addContext(this, 'Step 5.1: Click on the "CREATE" button');
+    addContext(this, 'Step 5.2: Generate a dynamic bank name for the new account');
+    addContext(this, 'Step 5.3: Provide the routing number (' + accountPage.account.routingNumber + ') for the bank account');
+    addContext(this, 'Step 5.4: Enter the account number (' + accountPage.account.accountNumber + ') for the new account');
+    addContext(this, 'Step 5.5: Click on the "SAVE" button to complete the bank account creation');
+    // Step 6: Verify the Bank Account Creation
+    addContext(this, 'Step 6: Wait for the URL to match (' + accountPage.accountsUrl + ')');
   });
 
-  it('Delete account test', async function () {
+  it('Successful Bank Account Deletion Process Test', async function () {
     const loginPage = new LoginPage(driver);
     const accountPage = new AccountPage(driver);
     // Perform login
@@ -58,17 +67,24 @@ describe('Account tests', function () {
       return text.includes("(Deleted)") || text.includes("DELETE");
     }, 'Associated text does not meet the expected conditions.');
 
-    //Additional context
-    addContext(this, `Found the url ${loginPage.loginUrl}`);
-    addContext(this, `Filled the username ${loginPage.username}`);
-    addContext(this, `Filled the password ${loginPage.password}`);
-    addContext(this, `Clicked on the button ${loginPage.loginButton}`);
-    addContext(this, `The url matched ${loginPage.baseUrl}`);
-    addContext(this, `Clicked on the button ${accountPage.accountBtn}`);
-    addContext(this, `Clicked on the button ${accountPage.createAccBtn}`);
-    addContext(this, `Found the field that matches the account name ${accountPage.accountName}`);
-    addContext(this, `Located the delete button that matches the account name field ${accountPage.delAccBtn}`);
-    addContext(this, `Clicked on the button ${accountPage.delAccBtn}`);
+    // Additional context
+    addContext(this, 'Test Case Title: Successful Bank Account Creation Process Test');
+    addContext(this, 'Test Case Description: Verify that a user can successfully create a bank account on the website');
+    // Test Steps:
+    addContext(this, 'Step 1: Open the web browser');
+    addContext(this, 'Step 2: Navigate to the login page (' + loginPage.loginUrl + ')');
+    // Step 3: User Information Input
+    addContext(this, 'Step 3.1. Enter a valid username (' + loginPage.username + ') in the username input field');
+    addContext(this, 'Step 3.2. Enter a valid password (' + loginPage.password + ') in the password input field');
+    addContext(this, 'Step 3.3. Click the "SIGN IN" button');
+    addContext(this, 'Step 3.4. Wait for the URL to match (' + loginPage.baseUrl + ')');
+    // Step 4: Navigate to the bank account page
+    addContext(this, 'Step 4: Click on the "Bank Accounts" button to access the account management page');
+    // Step 5: Bank Account Deletion
+    addContext(this, 'Step 5.1: Locate the account that matches the account name (' + accountPage.accountName + ')');
+    addContext(this, 'Step 5.2: Click the "DELETE" button matching the account name');
+    // Step 6: Verify the Bank Account Deletion
+    addContext(this, 'Step 6: Selected bank account now has (Deleted) attached');
   });
 
 });
