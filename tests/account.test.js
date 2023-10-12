@@ -38,21 +38,17 @@ describe('Account tests', function () {
     // Test Steps:
     addContext(this, 'Step 1: Open the web browser');
     addContext(this, 'Step 2: Navigate to the login page (' + loginPage.loginUrl + ')');
-    // Step 3: User Information Input
-    addContext(this, 'Step 3.1. Enter a valid username (' + loginPage.username + ') in the username input field');
-    addContext(this, 'Step 3.2. Enter a valid password (' + loginPage.password + ') in the password input field');
-    addContext(this, 'Step 3.3. Click the "SIGN IN" button');
-    addContext(this, 'Step 3.4. Wait for the URL to match (' + loginPage.baseUrl + ')');
-    // Step 4: Navigate to the bank account page
-    addContext(this, 'Step 4: Click on the "Bank Accounts" button to access the account management page');
-    // Step 5: Bank Account Creation
-    addContext(this, 'Step 5.1: Click on the "CREATE" button');
-    addContext(this, 'Step 5.2: Generate a dynamic bank name for the new account');
-    addContext(this, 'Step 5.3: Provide the routing number (' + accountPage.account.routingNumber + ') for the bank account');
-    addContext(this, 'Step 5.4: Enter the account number (' + accountPage.account.accountNumber + ') for the new account');
-    addContext(this, 'Step 5.5: Click on the "SAVE" button to complete the bank account creation');
-    // Step 6: Verify the Bank Account Creation
-    addContext(this, 'Step 6: Wait for the URL to match (' + accountPage.accountsUrl + ')');
+    addContext(this, 'Step 3: Enter a valid username (' + loginPage.username + ') in the username input field');
+    addContext(this, 'Step 4: Enter a valid password (' + loginPage.password + ') in the password input field');
+    addContext(this, 'Step 5: Click the "SIGN IN" button');
+    addContext(this, 'Step 6: Wait for the URL to match (' + loginPage.baseUrl + ')');
+    addContext(this, 'Step 7: Click on the "Bank Accounts" button to access the account management page');
+    addContext(this, 'Step 8: Click on the "CREATE" button');
+    addContext(this, 'Step 9: Generate a dynamic bank name for the new account');
+    addContext(this, 'Step 10: Provide the routing number (' + accountPage.account.routingNumber + ') for the bank account');
+    addContext(this, 'Step 11: Enter the account number (' + accountPage.account.accountNumber + ') for the new account');
+    addContext(this, 'Step 12: Click on the "SAVE" button to complete the bank account creation');
+    addContext(this, 'Step 13: Wait for the URL to match (' + accountPage.accountsUrl + ')');
   });
 
   it('Successful Bank Account Deletion Process Test', async function () {
@@ -73,18 +69,14 @@ describe('Account tests', function () {
     // Test Steps:
     addContext(this, 'Step 1: Open the web browser');
     addContext(this, 'Step 2: Navigate to the login page (' + loginPage.loginUrl + ')');
-    // Step 3: User Information Input
-    addContext(this, 'Step 3.1. Enter a valid username (' + loginPage.username + ') in the username input field');
-    addContext(this, 'Step 3.2. Enter a valid password (' + loginPage.password + ') in the password input field');
-    addContext(this, 'Step 3.3. Click the "SIGN IN" button');
-    addContext(this, 'Step 3.4. Wait for the URL to match (' + loginPage.baseUrl + ')');
-    // Step 4: Navigate to the bank account page
-    addContext(this, 'Step 4: Click on the "Bank Accounts" button to access the account management page');
-    // Step 5: Bank Account Deletion
-    addContext(this, 'Step 5.1: Locate the account that matches the account name (' + accountPage.accountName + ')');
-    addContext(this, 'Step 5.2: Click the "DELETE" button matching the account name');
-    // Step 6: Verify the Bank Account Deletion
-    addContext(this, 'Step 6: Selected bank account now has (Deleted) attached');
+    addContext(this, 'Step 3: Enter a valid username (' + loginPage.username + ') in the username input field');
+    addContext(this, 'Step 4: Enter a valid password (' + loginPage.password + ') in the password input field');
+    addContext(this, 'Step 5: Click the "SIGN IN" button');
+    addContext(this, 'Step 6: Wait for the URL to match (' + loginPage.baseUrl + ')');
+    addContext(this, 'Step 7: Click on the "Bank Accounts" button to access the account management page');
+    addContext(this, 'Step 8: Locate the account that matches the account name (' + accountPage.accountName + ')');
+    addContext(this, 'Step 9: Click the "DELETE" button matching the account name');
+    addContext(this, 'Step 10: Selected bank account now has (Deleted) attached');
   });
 
 });
