@@ -14,6 +14,8 @@ class SignUpPage extends BasePage {
     super(driver);
     this.signUpUrl = url.signUpUrl;
     this.loginUrl = url.loginUrl;
+    this.validSignup = validSignup1;
+    this.invalidSignup = invalidSignup1;
     this.firstName = By.css(signUp.firstName);
     this.lastName = By.css(signUp.lastName);
     this.username = By.css(signUp.username);
@@ -25,11 +27,11 @@ class SignUpPage extends BasePage {
   // Method to perform a sign-up operation with valid data
   async performSignUp() {
     await this.navigateTo(this.signUpUrl);
-    await this.sendKeys(this.firstName, validSignup1.firstName);
-    await this.sendKeys(this.lastName, validSignup1.lastName);
-    await this.sendKeys(this.username, validSignup1.username);
-    await this.sendKeys(this.password, validSignup1.password);
-    await this.sendKeys(this.confirmPass, validSignup1.confirmPassword);
+    await this.sendKeys(this.firstName, this.validSignup.firstName);
+    await this.sendKeys(this.lastName, this.validSignup.lastName);
+    await this.sendKeys(this.username, this.validSignup.username);
+    await this.sendKeys(this.password, this.validSignup.password);
+    await this.sendKeys(this.confirmPass, this.validSignup.confirmPassword);
     await this.click(this.singUpBtn);
     await this.waitForUrlToMatch(this.loginUrl);
   }
@@ -37,11 +39,11 @@ class SignUpPage extends BasePage {
   // Method to simulate an invalid sign-up attempt
   async tryInvalidSignUp() {
     await this.navigateTo(this.signUpUrl);
-    await this.sendKeys(this.firstName, invalidSignup1.firstName);
-    await this.sendKeys(this.lastName, invalidSignup1.lastName);
-    await this.sendKeys(this.username, invalidSignup1.username);
-    await this.sendKeys(this.password, invalidSignup1.password);
-    await this.sendKeys(this.confirmPass, invalidSignup1.confirmPassword);
+    await this.sendKeys(this.firstName, this.invalidSignup.firstName);
+    await this.sendKeys(this.lastName, this.invalidSignup.lastName);
+    await this.sendKeys(this.username, this.invalidSignup.username);
+    await this.sendKeys(this.password, this.invalidSignup.password);
+    await this.sendKeys(this.confirmPass, this.invalidSignup.confirmPassword);
   }
 
 }
