@@ -57,7 +57,7 @@ describe('Account tests', function () {
     // Perform login
     await loginPage.performLogin();
     // Delete account
-    await accountPage.findAndClickDeleteButtonByText();
+    await accountPage.findAndDeleteBankAccountByName();
     // Add assertions to verify successful deletion
     expect(accountPage.verifyText).to.satisfy((text) => {
       return text.includes("(Deleted)") || text.includes("DELETE");
