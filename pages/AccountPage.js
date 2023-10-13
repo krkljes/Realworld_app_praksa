@@ -34,8 +34,8 @@ class AccountPage extends BasePage {
     await this.click(this.saveAccBtn); // Click the "Save Account" button
   }
 
-  // Method to find and click the delete button associated with a specific text
-  async findAndClickDeleteButtonByText() {
+  // Method to find and click the delete button associated with a specific bank account
+  async findAndDeleteBankAccountByName() {
     await this.click(this.accountBtn); // Click on the account button
     const listItems = await this.driver.findElements(this.bankAccListItem); // Find all list items
     for (const listItem of listItems) {

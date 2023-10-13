@@ -4,8 +4,7 @@
     "passwordField": "#password",
     "submitButton": "[data-test='signin-submit']",
     "errorMessageField": "[data-test='signin-error']",
-    "errorMessage": "Username or password is invalid",
-    "logout": "[data-test='sidenav-signout']"
+    "errorMessage": "Username or password is invalid"
   },
   "signUp": {
     "firstName": "#firstName",
@@ -25,5 +24,33 @@
     "bankAccountList": "[data-test='bankaccount-list']",
     "bankAccListItem": "[data-test^='bankaccount-list-item']",
     "deleteAccountButton": "[data-test='bankaccount-delete']"
+  },
+  "navigation": {
+    "everyoneButton": "[data-test='nav-public-tab']",
+    "friendsButton": "[data-test='nav-contacts-tab']",
+    "mineButton": "[data-test='nav-personal-tab']",
+    "randomTransactionButton": "[data-test='transaction-item--7xanIywv9x']",
+    "profileButton": "[data-test='sidenav-user-settings']",
+    "accountButton": "[data-test='sidenav-bankaccounts']",
+    "notificationsButton": "[data-test='sidenav-notifications']",
+    "logoutButton": "[data-test='sidenav-signout']"
+  },
+  "userInfo": {
+    "firstName": "#user-settings-firstName-input",
+    "lastName": "#user-settings-lastName-input",
+    "email": "#user-settings-email-input",
+    "phone": "#user-settings-phoneNumber-input",
+    "userFullName": "[data-test='sidenav-user-full-name']",
+    "userSaveButton": "[data-test='user-settings-submit']"
+  },
+  "transactions": {
+    "newTransactionButton": "[data-test='nav-top-new-transaction']",
+    "userList": "[data-test='users-list']",
+    "userItem": "[data-test^='user-list-item']",
+    "amount": "#amount",
+    "note": "#transaction-create-description-input",
+    "pay": "[data-test='transaction-create-submit-payment']",
+    "request": "[data-test='transaction-create-submit-request']",
+    "successMessage": "[data-test='alert-bar-success']"
   }
 }
