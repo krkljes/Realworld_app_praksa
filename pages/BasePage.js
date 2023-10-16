@@ -31,6 +31,12 @@ class BasePage {
     });
   }
 
+  // Method to wait for the element to become visible
+  async waitForElementToBeVisible(selector, timeout = 1000) {
+    const element = await this.driver.wait(until.elementIsVisible(this.driver.findElement(selector)), timeout);
+    return element;
+  }
+
   //Method to clear the selected input field
   async clearInputField(inputFieldLocator) {
     const inputField = await this.driver.findElement(inputFieldLocator);
@@ -60,7 +66,6 @@ class BasePage {
   getCurrentTimestamp() {
     return Date.now().toString(); // Get the current timestamp and convert it to a string
   }
-
 
 }
 

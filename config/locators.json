@@ -29,7 +29,6 @@
     "everyoneButton": "[data-test='nav-public-tab']",
     "friendsButton": "[data-test='nav-contacts-tab']",
     "mineButton": "[data-test='nav-personal-tab']",
-    "randomTransactionButton": "[data-test='transaction-item--7xanIywv9x']",
     "profileButton": "[data-test='sidenav-user-settings']",
     "accountButton": "[data-test='sidenav-bankaccounts']",
     "notificationsButton": "[data-test='sidenav-notifications']",
@@ -52,5 +51,10 @@
     "pay": "[data-test='transaction-create-submit-payment']",
     "request": "[data-test='transaction-create-submit-request']",
     "successMessage": "[data-test='alert-bar-success']"
+  },
+  "notification": {
+    "listItem": "[data-test^='notification-list-item']",
+    "dismissButton": "[data-test^='notification-mark-read']",
+    "count": "[data-test='nav-top-notifications-link']"
   }
 }

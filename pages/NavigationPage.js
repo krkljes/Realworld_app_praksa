@@ -13,7 +13,6 @@ class NavigationPage extends BasePage {
     this.everyoneButton = By.css(navigation.everyoneButton);
     this.friendsButton = By.css(navigation.friendsButton);
     this.mineButton = By.css(navigation.mineButton);
-    this.randomTransactionButton = By.css(navigation.randomTransactionButton);
     this.profileButton = By.css(navigation.profileButton);
     this.accountButton = By.css(navigation.accountButton);
     this.notificationsButton = By.css(navigation.notificationsButton);
@@ -28,8 +27,6 @@ class NavigationPage extends BasePage {
     await this.waitForUrlToMatch(this.url.contactsTransactionsUrl);
     await this.click(this.mineButton);
     await this.waitForUrlToMatch(this.url.personalTransactionsUrl);
-    await this.click(this.randomTransactionButton);
-    await this.waitForUrlToMatch(this.url.randomTransactionUrl);
     await this.click(this.profileButton);
     await this.waitForUrlToMatch(this.url.profileUrl);
     await this.click(this.accountButton);
