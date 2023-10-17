@@ -1,4 +1,4 @@
-const { Builder } = require('selenium-webdriver');
+const DriverFactory = require('../utils/DriverFactory');
 const SignUpPage = require('../pages/SignUpPage');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
@@ -12,7 +12,8 @@ describe('Signup Process Tests', function () {
 
   before(async function () {
     // Initialize the WebDriver and open the browser
-    driver = await new Builder().forBrowser('chrome').build();
+    const browserName = 'chrome'; //Browser choice - chrome, firefox, edge
+    driver = DriverFactory.createDriver(browserName);
   });
 
   after(async function () {

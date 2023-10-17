@@ -1,7 +1,7 @@
 const { By } = require('selenium-webdriver');
 const BasePage = require('./BasePage');
-const locators = require('../config/locators.json');
-const urls = require('../config/urls.json');
+const locators = require('../utils/locators.json');
+const urls = require('../utils/urls.json');
 
 const navigation = locators.navigation;
 const notification = locators.notification;

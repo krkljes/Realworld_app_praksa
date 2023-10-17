@@ -1,8 +1,8 @@
 const { By } = require('selenium-webdriver');
 const BasePage = require('./BasePage');
-const credentials = require('../config/credentials.json');
-const locators = require('../config/locators.json');
-const urls = require('../config/urls.json');
+const credentials = require('../utils/credentials.json');
+const locators = require('../utils/locators.json');
+const urls = require('../utils/urls.json');
 
 const validUser = credentials.validUser;
 const invalidUser = credentials.invalidUser;
