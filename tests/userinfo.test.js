@@ -1,4 +1,4 @@
-const { Builder } = require('selenium-webdriver');
+const DriverFactory = require('../utils/DriverFactory');
 const LoginPage = require('../pages/LoginPage');
 const UserInfoPage = require('../pages/UserInfoPage');
 const chai = require('chai');
@@ -13,7 +13,8 @@ describe('User Info Edit Tests', function () {
 
   before(async function () {
     // Initialize the WebDriver and open the browser
-    driver = await new Builder().forBrowser('chrome').build();
+    const browserName = 'chrome'; //Browser choice - chrome, firefox, edge
+    driver = DriverFactory.createDriver(browserName);
   });
 
   after(async function () {
@@ -32,6 +33,22 @@ describe('User Info Edit Tests', function () {
     const actualText = await loginPage.getText(userInfoPage.userFullName);
     expect(actualText).includes(userInfoPage.userCredentials.firstName, "User info edit was not successful");
 
+    // Additional context
+    addContext(this, 'Test Case Title: Successful User Info Edit Test');
+    addContext(this, 'Test Case Description: Verify that a user can successfully edit user info on the website');
+    // Test Steps:
+    addContext(this, 'Step 1: Open the web browser');
+    addContext(this, 'Step 2: Navigate to the login page (' + loginPage.loginUrl + ')');
+    addContext(this, 'Step 3: Enter a valid username (' + loginPage.username + ') in the username input field');
+    addContext(this, 'Step 4: Enter a valid password (' + loginPage.password + ') in the password input field');
+    addContext(this, 'Step 5: Click the "SIGN IN" button');
+    addContext(this, 'Step 6: Wait for the URL to match (' + loginPage.baseUrl + ')');
+    addContext(this, 'Step 7: Click on the "My Account" tab');
+    addContext(this, 'Step 8: Enter a valid first name (' + userInfoPage.userCredentials.firstName + ') to replace the first name input field value');
+    addContext(this, 'Step 9: Enter a valid last name (' + userInfoPage.userCredentials.lastName + ') to replace the last name input field value');
+    addContext(this, 'Step 10: Enter a valid email (' + userInfoPage.userCredentials.email + ') to replace the email input field value');
+    addContext(this, 'Step 11: Enter a valid phone number (' + userInfoPage.userCredentials.phone + ') to replace the phone number input field value');
+    addContext(this, 'Step 12: Click on the "SAVE" button');
+    addContext(this, 'Step 13: Verify the new user info matches the info entered');
   });
-
 });

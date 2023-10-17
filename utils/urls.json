@@ -7,7 +7,6 @@
     "contactsTransactionsUrl": "http://localhost:3000/contacts",
     "personalTransactionsUrl": "http://localhost:3000/personal",
     "profileUrl": "http://localhost:3000/user/settings",
-    "notificationsUrl": "http://localhost:3000/notifications",
-    "randomTransactionUrl": "http://localhost:3000/transaction/-7xanIywv9x"
+    "notificationsUrl": "http://localhost:3000/notifications"
   }
 }

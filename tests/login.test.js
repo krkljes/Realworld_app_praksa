@@ -1,4 +1,4 @@
-const { Builder, until } = require('selenium-webdriver');
+const DriverFactory = require('../utils/DriverFactory');
 const LoginPage = require('../pages/LoginPage');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
@@ -12,7 +12,8 @@ describe('Login Tests', function () {
 
   beforeEach(async function () {
     // Initialize the WebDriver and open the browser
-    driver = await new Builder().forBrowser('chrome').build();
+    const browserName = 'chrome'; //Browser choice - chrome, firefox, edge
+    driver = DriverFactory.createDriver(browserName);
   });
 
   afterEach(async function () {
@@ -62,5 +63,4 @@ describe('Login Tests', function () {
     addContext(this, 'Step 5: Click on the "SIGN IN" button');
     addContext(this, 'Step 6: Error message is displayed (' + errorText + ')');
   });
-
 });

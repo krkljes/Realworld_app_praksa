@@ -34,7 +34,7 @@ To set up the Cypress RealWorld App testing environment, follow these steps:
 
 ## Configuration
 
-Configuration settings are maintained in the config directory. This file contains data for both valid and invalid user accounts, URLs for different pages, and element locators used throughout the test scripts.
+Configuration settings are maintained in the utils directory. This file contains data for both valid and invalid user accounts, URLs for different pages, and element locators used throughout the test scripts, as well as driver factory.
 
 ## Running the Tests
 

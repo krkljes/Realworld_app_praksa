@@ -1,4 +1,4 @@
-const { Builder } = require('selenium-webdriver');
+const DriverFactory = require('../utils/DriverFactory');
 const AccountPage = require('../pages/AccountPage');
 const LoginPage = require('../pages/LoginPage');
 const chai = require('chai');
@@ -13,7 +13,8 @@ describe('Account tests', function () {
 
   beforeEach(async function () {
     // Initialize the WebDriver and open the browser
-    driver = await new Builder().forBrowser('chrome').build();
+    const browserName = 'chrome'; //Browser choice - chrome, firefox, edge
+    driver = DriverFactory.createDriver(browserName);
   });
 
   afterEach(async function () {
@@ -64,8 +65,8 @@ describe('Account tests', function () {
     }, 'Associated text does not meet the expected conditions.');
 
     // Additional context
-    addContext(this, 'Test Case Title: Successful Bank Account Creation Process Test');
-    addContext(this, 'Test Case Description: Verify that a user can successfully create a bank account on the website');
+    addContext(this, 'Test Case Title: Successful Bank Account Deletion Process Test');
+    addContext(this, 'Test Case Description: Verify that a user can successfully delete a bank account on the website');
     // Test Steps:
     addContext(this, 'Step 1: Open the web browser');
     addContext(this, 'Step 2: Navigate to the login page (' + loginPage.loginUrl + ')');
@@ -78,5 +79,4 @@ describe('Account tests', function () {
     addContext(this, 'Step 9: Click the "DELETE" button matching the account name');
     addContext(this, 'Step 10: Selected bank account now has (Deleted) attached');
   });
-
 });
