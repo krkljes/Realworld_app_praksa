@@ -38,6 +38,7 @@ describe('Notification test', function () {
       // Dismiss a notification
       await notificationPage.dismissNotification();
       // Get the updated value
+      await notificationPage.waitForElementToBeVisible(notificationPage.notificationCount);
       const updatedValue = parseInt(await notificationPage.getText(notificationPage.notificationCount), 10); 
       // Add assertions to verify successful dismissal
       expect(updatedValue).to.equal(initialValue - 1);
