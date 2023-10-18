@@ -10,13 +10,13 @@ const expect = chai.expect;
 describe('Signup Process Tests', function () {
   let driver;
 
-  before(async function () {
+  beforeEach(async function () {
     // Initialize the WebDriver and open the browser
-    const browserName = 'chrome'; //Browser choice - chrome, firefox, edge
+    const browserName = global.browserName || 'chrome'; //Browser choice - chrome, firefox, edge
     driver = DriverFactory.createDriver(browserName);
   });
 
-  after(async function () {
+  afterEach(async function () {
     // Quit the WebDriver after the test is complete
     await driver.quit();
   });
@@ -73,4 +73,5 @@ describe('Signup Process Tests', function () {
     addContext(this, 'Step 9: Enter the same password (' + signUpPage.invalidSignup.confirmPassword + ') in the password confirmation input field');
     addContext(this, 'Step 10: Verify that the "SIGN UP" button is disabled');
   });
+
 });

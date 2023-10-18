@@ -12,7 +12,7 @@ describe('Login Tests', function () {
 
   beforeEach(async function () {
     // Initialize the WebDriver and open the browser
-    const browserName = 'chrome'; //Browser choice - chrome, firefox, edge
+    const browserName = global.browserName || 'chrome'; //Browser choice - chrome, firefox, edge
     driver = DriverFactory.createDriver(browserName);
   });
 

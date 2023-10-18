@@ -11,13 +11,13 @@ const expect = chai.expect;
 describe('User Info Edit Tests', function () {
   let driver;
 
-  before(async function () {
+  beforeEach(async function () {
     // Initialize the WebDriver and open the browser
-    const browserName = 'chrome'; //Browser choice - chrome, firefox, edge
+    const browserName = global.browserName || 'chrome'; //Browser choice - chrome, firefox, edge
     driver = DriverFactory.createDriver(browserName);
   });
 
-  after(async function () {
+  afterEach(async function () {
     // Quit the WebDriver after the test is complete
     await driver.quit();
   });

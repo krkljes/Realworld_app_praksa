@@ -11,13 +11,13 @@ const expect = chai.expect;
 describe('Navigation Test', function () {
   let driver;
 
-  before(async function () {
+  beforeEach(async function () {
     // Initialize the WebDriver and open the browser
-    const browserName = 'chrome'; //Browser choice - chrome, firefox, edge
+    const browserName = global.browserName || 'chrome'; //Browser choice - chrome, firefox, edge
     driver = DriverFactory.createDriver(browserName);
   });
 
-  after(async function () {
+  afterEach(async function () {
     // Quit the WebDriver after the test is complete
     await driver.quit();
   });
@@ -27,7 +27,7 @@ describe('Navigation Test', function () {
     const navigationPage = new NavigationPage(driver);
     // Perform login
     await loginPage.performLogin();
-    // Navigate through website
+    // Navigate through the website
     await navigationPage.navigate();
     // Add assertions to verify successful navigation
     const currentUrl = await driver.getCurrentUrl();
@@ -44,7 +44,7 @@ describe('Navigation Test', function () {
     addContext(this, 'Step 5: Click the "SIGN IN" button');
     addContext(this, 'Step 6: Wait for the URL to match (' + loginPage.baseUrl + ')');
     addContext(this, 'Step 7: Click on the "EVERYONE" tab');
-    addContext(this, 'Step 8: Verify that the all users transaction history page (' + navigationPage.url.baseUrl + ') is displayed');
+    addContext(this, 'Step 8: Verify that the all user\'s transaction history page (' + navigationPage.url.baseUrl + ') is displayed');
     addContext(this, 'Step 9: Click on the "FRIENDS" tab');
     addContext(this, 'Step 10: Verify that the user\'s contacts transaction history page (' + navigationPage.url.contactsTransactionsUrl + ') is displayed');
     addContext(this, 'Step 11: Click on the "MINE" tab');

@@ -32,14 +32,14 @@ class TransactionPage extends BasePage {
     await this.click(this.payButton);
   }
 
-    // Method to create a new transaction request
-    async createNewTransactionRequest() {
-      await this.click(this.newTransactionButton);
-      await this.clickRandomUserInList(this.userItem);
-      await this.sendKeys(this.amountField, this.transactionData.amount);
-      await this.sendKeys(this.noteField, this.transactionData.note);
-      await this.click(this.requestButton);
-    }
+  // Method to create a new transaction request
+  async createNewTransactionRequest() {
+    await this.click(this.newTransactionButton);
+    await this.clickRandomUserInList(this.userItem);
+    await this.sendKeys(this.amountField, this.transactionData.amount);
+    await this.sendKeys(this.noteField, this.transactionData.note);
+    await this.click(this.requestButton);
+  }
 
 }
 module.exports = TransactionPage;

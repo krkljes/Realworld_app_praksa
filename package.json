@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests/*.js --reporter mochawesome --timeout 10000"
+    "test": "mocha tests/*.js --reporter mochawesome --timeout 10000",
+    "test-suite": "node testSuite.js"
   },
   "keywords": [],
   "author": "",
