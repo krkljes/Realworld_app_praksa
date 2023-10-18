@@ -21,6 +21,7 @@ class LoginPage extends BasePage {
     this.invalidUsername = invalidUser.username;
     this.invalidPassword = invalidUser.password;
     this.loginButton = By.css(login.submitButton);
+    this.logoutButton = By.css(login.logoutButton);
     this.errorField = By.css(login.errorMessageField);
     this.errorMsg = login.errorMessage;
   }

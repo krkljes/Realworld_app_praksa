@@ -4,7 +4,8 @@
     "passwordField": "#password",
     "submitButton": "[data-test='signin-submit']",
     "errorMessageField": "[data-test='signin-error']",
-    "errorMessage": "Username or password is invalid"
+    "errorMessage": "Username or password is invalid",
+    "logoutButton": "[data-test='sidenav-signout']"
   },
   "signUp": {
     "firstName": "#firstName",

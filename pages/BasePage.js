@@ -61,7 +61,7 @@ class BasePage {
       }
     }
   }
-
+  
   // Method to get the current timestamp as a string
   getCurrentTimestamp() {
     return Date.now().toString(); // Get the current timestamp and convert it to a string

@@ -13,7 +13,7 @@ describe('Account tests', function () {
 
   beforeEach(async function () {
     // Initialize the WebDriver and open the browser
-    const browserName = 'chrome'; //Browser choice - chrome, firefox, edge
+    const browserName = global.browserName || 'chrome'; //Browser choice - chrome, firefox, edge
     driver = DriverFactory.createDriver(browserName);
   });
 
@@ -25,6 +25,7 @@ describe('Account tests', function () {
   it('Successful Bank Account Creation Process Test', async function () {
     const loginPage = new LoginPage(driver);
     const accountPage = new AccountPage(driver);
+
     // Perform login
     await loginPage.performLogin();
     // Create account
@@ -55,6 +56,7 @@ describe('Account tests', function () {
   it('Successful Bank Account Deletion Process Test', async function () {
     const loginPage = new LoginPage(driver);
     const accountPage = new AccountPage(driver);
+
     // Perform login
     await loginPage.performLogin();
     // Delete account
