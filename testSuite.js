@@ -1,18 +1,14 @@
-const DriverFactory = require('./utils/DriverFactory');
 const Mocha = require('mocha');
 
 const [,, test, browserName] = process.argv;
 
 if (!test || !browserName) {
-  console.error("Usage: node testSuite.js <testName> <browserName>");
+  console.error("Usage: npm run test-suite <testName> <browserName>");
   process.exit(1);
 }
 
 // Attach browserName to the global object
 global.browserName = browserName;
-
-// Create a driver instance
-const driver = DriverFactory.createDriver(global.browserName);
 
 const mocha = new Mocha();
 mocha.timeout(10000); // Set the global timeout
