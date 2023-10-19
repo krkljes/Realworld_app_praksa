@@ -1,8 +1,8 @@
-# Cypress RealWorld App Functional Testing
+# Cypress RealWorld App Automated Testing
 
 ## Overview
 
-This repository contains an extensive test suite designed for functional testing of the Cypress RealWorld App.
+This repository contains an extensive test suite designed for automated testing of the Cypress RealWorld App. The Cypress RealWorld App can be downloaded from [here](https://github.com/cypress-io/cypress-realworld-app). Instructions on how to set up and use the RealWorld App are provided in its README file.
 
 ## Prerequisites
 
