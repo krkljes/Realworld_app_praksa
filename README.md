@@ -49,7 +49,7 @@ To execute the functional tests, you can use the following commands:
 - To run all tests in a specific browser, use the `--browser_name` flag with the desired browser name. Supported browsers are Chrome, Firefox, and Edge. For example, to run tests in Firefox:
 
     ```bash
-    npm test -- --browser_name firefox
+    npm test -- --browser_name:firefox
     ```
 
 - To run a specific test in a specific browser, use the `npm run test-suite` command followed by the test name and browser name. For example, to run a test named `signup.test.js` in Edge:

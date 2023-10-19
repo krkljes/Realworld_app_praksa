@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env BROWSER_NAME=$npm_config_browser_name mocha tests/*.js --reporter mochawesome --reporter-options code=false --timeout 10000"
+    "test": "cross-env BROWSER_NAME=$npm_config_browser_name mocha tests/*.js --reporter mochawesome --reporter-options code=false --timeout 10000",
+    "test-suite": "node testSuite.js"
   },
   "keywords": [],
   "author": "",
