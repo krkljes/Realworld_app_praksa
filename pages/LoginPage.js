@@ -1,61 +1,45 @@
-const { By } = require("selenium-webdriver");
-const BasePage = require("./BasePage");
-const urldata = require("../config/urldata.json");
-const credentials = require("../config/credentials.json");
-const locators = require("../config/locators.json");
+const { By } = require('selenium-webdriver');
+const BasePage = require('./BasePage');
+const credentials = require('../utils/credentials.json');
+const locators = require('../utils/locators.json');
+const urls = require('../utils/urls.json');
 
-// Accessing test data
 const validUser = credentials.validUser;
 const invalidUser = credentials.invalidUser;
-const url = urldata.urls;
-const loginLocators = locators.login;
+const login = locators.login;
+const url = urls.url;
 
 class LoginPage extends BasePage {
-  // Locators and methods specific to the Login page
   constructor(driver) {
     super(driver);
     this.loginUrl = url.loginUrl;
-    this.baseUrl = url.baseUrl
-    this.username = By.css(loginLocators.username);
-    this.password = By.css(loginLocators.password);
-    this.btn = By.css(loginLocators.submit);
-    this.text = By.css(loginLocators.errorMessage);
-    this.logOutBtn = By.css(loginLocators.signOutBtn);
+    this.baseUrl = url.baseUrl;
+    this.usernameField = By.css(login.usernameField);
+    this.passwordField = By.css(login.passwordField);
+    this.username = validUser.username;
+    this.password = validUser.password;
+    this.invalidUsername = invalidUser.username;
+    this.invalidPassword = invalidUser.password;
+    this.loginButton = By.css(login.submitButton);
+    this.errorField = By.css(login.errorMessageField);
+    this.errorMsg = login.errorMessage;
   }
 
-  // Logs in with a valid username and password 
-  async logIn() {
-    await this.navigate(this.loginUrl);
-
-    await this.waitForElementVisible(this.username);
-    await this.sendKeys(this.username, validUser.username);
-
-    await this.waitForElementVisible(this.password);
-    await this.sendKeys(this.password, validUser.password);
-    
-    await this.clickBtn(this.btn);
-    await this.waitForUrl(url.baseUrl);
+  // Method to perform a valid login
+  async performLogin() {
+    await this.navigateTo(this.loginUrl);
+    await this.sendKeys(this.usernameField, this.username);
+    await this.sendKeys(this.passwordField, this.password);
+    await this.click(this.loginButton);
+    await this.waitForUrlToMatch(this.baseUrl);
   }
 
-  // Logs in with invalid password
-  async invalidLogIn() {
-    await this.navigate(this.loginUrl);
-   
-    // Fills in required input fields
-    await this.waitForElementVisible(this.username);
-    await this.sendKeys(this.username, invalidUser.username);
-
-    await this.waitForElementVisible(this.password);
-    await this.sendKeys(this.password, invalidUser.password);
-  
-    // Clicks button and logs in
-    await this.clickBtn(this.btn);
-  }
-
-  
-  async logOut() {
-    await this.clickBtn(this.logOutBtn);
-    await this.waitForUrl(this.loginUrl)
+  // Method to simulate an invalid login attempt
+  async tryInvalidLogin() {
+    await this.navigateTo(this.loginUrl);
+    await this.sendKeys(this.usernameField, this.invalidUsername);
+    await this.sendKeys(this.passwordField, this.invalidPassword);
+    await this.click(this.loginButton);
   }
 }
 

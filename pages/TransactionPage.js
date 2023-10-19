@@ -1,55 +1,45 @@
-const { By } = require("selenium-webdriver");
-const BasePage = require("./BasePage");
-const urldata = require("../config/urldata.json");
-const credentials = require("../config/credentials.json");
-const locators = require("../config/locators.json");
+const { By } = require('selenium-webdriver');
+const BasePage = require('./BasePage');
+const credentials = require('../utils/credentials.json');
+const locators = require('../utils/locators.json');
+const urls = require('../utils/urls.json');
 
-// Accessing test data
-const newTransactions = credentials.transactionInputs;
-const transactionLocators = locators.newTransaction;
-const url = urldata.urls;
+const transactionData = credentials.transaction;
+const transactionLocatorator = locators.transactions;
+const url = urls.url;
 
 class TransactionPage extends BasePage {
-    constructor(driver) {
-        super(driver);
-        this.transactionUrl = url.makeTransactionUrl;
-        this.amount = By.css(transactionLocators.amountInput);
-        this.addNote = By.css(transactionLocators.noteInput);
-        this.btnPay = By.css(transactionLocators.payBtn);
-        this.reqBtn = By.css(transactionLocators.requestBtn);
-        this.btnNew = By.css(transactionLocators.newBtn);
-        this.userList = By.css(transactionLocators.paymentList);
-        this.alertText = By.css(transactionLocators.snackbarText);
-        this.return = By.css(transactionLocators.return);
+  constructor(driver) {
+    super(driver);
+    this.url = url;
+    this.transactionData = transactionData;
+    this.newTransactionButton = By.css(transactionLocatorator.newTransactionButton);
+    this.userList = By.css(transactionLocatorator.userList);
+    this.userItem = By.css(transactionLocatorator.userItem);
+    this.amountField = By.css(transactionLocatorator.amount);
+    this.noteField = By.css(transactionLocatorator.note);
+    this.payButton = By.css(transactionLocatorator.pay);
+    this.requestButton = By.css(transactionLocatorator.request);
+    this.successMessageField = By.css(transactionLocatorator.successMessage);
+  }
+
+  // Method to create a new payment
+  async createNewPayment() {
+    await this.click(this.newTransactionButton);
+    await this.clickRandomUserInList(this.userItem);
+    await this.sendKeys(this.amountField, this.transactionData.amount);
+    await this.sendKeys(this.noteField, this.transactionData.note);
+    await this.click(this.payButton);
+  }
+
+    // Method to create a new transaction request
+    async createNewTransactionRequest() {
+      await this.click(this.newTransactionButton);
+      await this.clickRandomUserInList(this.userItem);
+      await this.sendKeys(this.amountField, this.transactionData.amount);
+      await this.sendKeys(this.noteField, this.transactionData.note);
+      await this.click(this.requestButton);
     }
 
-    // Creates a new transaction by filling out required fields and clicking pay
-    async payTransaction() {
-        await this.clickBtn(this.btnNew);
-        await this.waitForUrl(this.transactionUrl);
-
-        await this.clickBtn(this.userList);
-
-        await this.sendKeys(this.amount, newTransactions.amount);
-        await this.sendKeys(this.addNote, newTransactions.note);
-
-        
-        await this.clickBtn(this.btnPay);
-    }
-
-    async requestTransaction() {
-        await this.clickBtn(this.return);
-        
-        await this.clickBtn(this.btnNew);
-        await this.waitForUrl(this.transactionUrl)
-
-        await this.clickBtn(this.userList);
-
-        await this.sendKeys(this.amount, newTransactions.amount);
-        await this.sendKeys(this.addNote, newTransactions.note);
-
-        await this.clickBtn(this.reqBtn);
-    }
 }
-
 module.exports = TransactionPage;

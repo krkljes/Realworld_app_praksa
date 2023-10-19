@@ -1,0 +1,12 @@
+{
+  "url": {
+    "baseUrl": "http://localhost:3000/",
+    "loginUrl": "http://localhost:3000/signin",
+    "signUpUrl": "http://localhost:3000/signup",
+    "accountsUrl": "http://localhost:3000/bankaccounts",
+    "contactsTransactionsUrl": "http://localhost:3000/contacts",
+    "personalTransactionsUrl": "http://localhost:3000/personal",
+    "profileUrl": "http://localhost:3000/user/settings",
+    "notificationsUrl": "http://localhost:3000/notifications"
+  }
+}

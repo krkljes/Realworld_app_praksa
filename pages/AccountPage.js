@@ -1,57 +1,55 @@
-const { By } = require("selenium-webdriver");
-const BasePage = require("./BasePage");
-const urldata = require("../config/urldata.json");
-const credentials = require("../config/credentials.json");
-const locators = require("../config/locators.json");
+const { By } = require('selenium-webdriver');
+const BasePage = require('./BasePage');
+const credentials = require('../utils/credentials.json');
+const locators = require('../utils/locators.json');
+const urls = require('../utils/urls.json');
 
-// Accessing test data
-const newAccount = credentials.newAccount;
-const url = urldata.urls;
-const createAccLocators = locators.createAccount;
+const account = credentials.account;
+const accountLocator = locators.account;
+const url = urls.url;
 
-// Locators and methods specific to the AccountPage
 class AccountPage extends BasePage {
   constructor(driver) {
     super(driver);
-    this.bankUrl = url.bankAcc;
-    this.baseUrl = url.baseUrl;
-    this.bankName = By.css(createAccLocators.bankName);
-    this.accNumber = By.css(createAccLocators.accNumber);
-    this.routNumber = By.css(createAccLocators.routingNum);
-    this.bankAccBtn = By.css(createAccLocators.bankAccBtn);
-    this.createBtn = By.css(createAccLocators.createBtn);
-    this.saveBtn = By.css(createAccLocators.saveBtn);
-    this.deleteBtn = By.css(createAccLocators.deleteBtn);
-    this.listItem = By.css(createAccLocators.accountListItem);
-    this.pText = By.css(createAccLocators.accountText);
+    this.accountsUrl = url.accountsUrl;
+    this.account = account;
+    this.accountBtn = By.css(accountLocator.accountButton);
+    this.createAccBtn = By.css(accountLocator.createAccount);
+    this.bankName = By.css(accountLocator.bankName);
+    this.routingNum = By.css(accountLocator.routingNumber);
+    this.accountNum = By.css(accountLocator.accountNumber);
+    this.saveAccBtn = By.css(accountLocator.saveAccountButton);
+    this.bankAccListItem = By.css(accountLocator.bankAccListItem);
+    this.delAccBtn = By.css(accountLocator.deleteAccountButton);
+    this.accountName = account.bankName;
   }
 
-  // Creates a new bank account by filling out the required fields and saving it.
-  async createAccount() {
-    // Click on the "Bank Account" and "Create" buttons
-    await this.clickBtn(this.bankAccBtn);
-    await this.clickBtn(this.createBtn);
-
-    // Fill in and submit bank account information
-    await this.waitForElementVisible(this.bankName);
-    await this.sendKeys(this.bankName, newAccount.bankName);
-
-    await this.waitForElementVisible(this.accNumber);
-    await this.sendKeys(this.accNumber, newAccount.accountNumber);
-
-    await this.waitForElementVisible(this.routNumber);
-    await this.sendKeys(this.routNumber, newAccount.routingNumber);
-
-    await this.clickBtn(this.saveBtn);
-    
-    // Wait for the URL to change to the bank URL
-    await this.waitForUrl(this.bankUrl);
+  // Method to create a bank account
+  async createBankAccount() {
+    await this.click(this.accountBtn); // Click on the account button
+    await this.click(this.createAccBtn); // Click on the "Create Account" button
+    await this.sendKeys(this.bankName, Date.now().toString()); // Enter a dynamic bank name (timestamp)
+    await this.sendKeys(this.routingNum, this.account.routingNumber); // Enter the routing number from the 'account' object
+    await this.sendKeys(this.accountNum, this.account.accountNumber); // Enter the account number from the 'account' object
+    await this.click(this.saveAccBtn); // Click the "Save Account" button
   }
 
-  // Deletes the bank account
-  async deleteAccount() {
-    // Calls function from BasePage and deletes wanted bank account
-    await this.deleteBankAccount(this.deleteBtn);
+  // Method to find and click the delete button associated with a specific bank account
+  async findAndDeleteBankAccountByName() {
+    await this.click(this.accountBtn); // Click on the account button
+    const listItems = await this.driver.findElements(this.bankAccListItem); // Find all list items
+    for (const listItem of listItems) {
+      const associatedText = await listItem.getText(); // Get the text associated with the current list item
+      if (associatedText.includes(this.accountName)) { // Check if the text includes the target account name
+        this.verifyText = associatedText; // Store the associated text for verification
+        const deleteButtons = await listItem.findElements(this.delAccBtn); // Find all delete buttons within the list item
+        if (deleteButtons.length > 0) { // Check if delete buttons exist
+          const deleteButton = await listItem.findElement(this.delAccBtn); // Get the first delete button
+          await deleteButton.click(); // Click the delete button
+          return; // Exit the loop
+        }
+      }
+    }
   }
 }
 module.exports = AccountPage;
