@@ -13,7 +13,7 @@ describe('Account tests', function () {
 
   beforeEach(async function () {
     // Initialize the WebDriver and open the browser
-    const browserName = global.browserName || 'chrome'; //Browser choice - chrome, firefox, edge
+    const browserName = global.browserName || process.env.BROWSER_NAME || 'chrome';
     driver = DriverFactory.createDriver(browserName);
   });
 
