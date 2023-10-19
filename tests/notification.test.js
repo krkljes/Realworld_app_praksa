@@ -27,7 +27,6 @@ describe('Notification test', function () {
     if (this.currentTest.state === "failed") {
       await notificationPage.takeScreenshot(this.currentTest.title, screenshotDir);
     }
-  });
 
   after(async function () {
     // Quit the WebDriver after the test is complete

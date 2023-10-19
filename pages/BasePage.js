@@ -9,6 +9,7 @@ class BasePage {
   }
 
   // Method to navigate to a specified URL
+
    async navigateTo(url) {
     try {
       await this.driver.get(url);

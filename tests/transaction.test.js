@@ -26,7 +26,6 @@ describe('Transaction tests', function () {
     if (this.currentTest.state === "failed") {
       await transactionPage.takeScreenshot(this.currentTest.title, screenshotDir);
     }
-  });
 
   afterEach(async function () {
     // Quit the WebDriver after the test is complete
@@ -61,7 +60,6 @@ describe('Transaction tests', function () {
   });
 
   it('Successful Transaction Request Test', async function () {
-
     // Perform login
     await loginPage.performLogin();
     await transactionPage.createNewTransactionRequest();

@@ -62,8 +62,6 @@ describe('Account tests', function () {
   });
 
   it('Successful Bank Account Deletion Process Test', async function () {
-    const loginPage = new LoginPage(driver);
-    const accountPage = new AccountPage(driver);
     // Perform login
     await loginPage.performLogin();
     // Delete account
