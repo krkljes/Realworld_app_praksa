@@ -1,0 +1,9 @@
+{
+  "urls": {
+    "baseUrl": "http://localhost:3000/",
+    "loginUrl": "http://localhost:3000/signin",
+    "signUpUrl": "http://localhost:3000/signup",
+    "bankAcc": "http://localhost:3000/bankaccounts",
+    "bankAccNew": "http://localhost:3000/bankaccounts/new"
+  }
+}

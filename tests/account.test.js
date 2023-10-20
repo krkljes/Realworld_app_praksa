@@ -4,6 +4,7 @@ const LoginPage = require('../pages/LoginPage');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const addContext = require('mochawesome/addContext');
+const screenshotDir = "./screenshots";
 
 chai.use(chaiAsPromised);
 const expect = chai.expect;
@@ -15,6 +16,13 @@ describe('Account tests', function () {
     // Initialize the WebDriver and open the browser
     const browserName = 'chrome'; //Browser choice - chrome, firefox, edge
     driver = DriverFactory.createDriver(browserName);
+  });
+
+   // After each test case, check if it failed and take a screenshot
+  afterEach(async function () {
+    if (this.currentTest.state === "failed") {
+      await accountPage.takeScreenshot(this.currentTest.title, screenshotDir);
+    }
   });
 
   afterEach(async function () {

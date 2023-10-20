@@ -1,10 +1,15 @@
 const { until, Key } = require('selenium-webdriver');
+const { expect } = require("chai");
+const fs = require("fs");
+const path = require('path');
+
+// BasePage class for common Selenium WebDriver actions
 
 class BasePage {
   constructor(driver) {
     this.driver = driver;
   }
-
+  
   // Method to navigate to a specified URL
   async navigateTo(url) {
     await this.driver.get(url); // Use the WebDriver to navigate to the given URL
@@ -66,7 +71,6 @@ class BasePage {
   getCurrentTimestamp() {
     return Date.now().toString(); // Get the current timestamp and convert it to a string
   }
-
 }
 
 module.exports = BasePage;

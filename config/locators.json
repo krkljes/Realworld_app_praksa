@@ -1,0 +1,27 @@
+{
+  "login": {
+    "username": "#username",
+    "password": "#password",
+    "submit": "[data-test='signin-submit']",
+    "errorMessage": "[data-test='signin-error']"
+  },
+  "signUp": {
+    "firstName": "#firstName",
+    "lastName": "#lastName",
+    "username": "#username",
+    "password": "#password",
+    "confirmPassword": "#confirmPassword",
+    "signUpBtn": "[data-test= 'signup-submit']"
+  },
+  "createAccount": {
+    "bankAccBtn": "[data-test='sidenav-bankaccounts']",
+    "createBtn": "[data-test='bankaccount-new']",
+    "bankName": "#bankaccount-bankName-input",
+    "routingNum": "#bankaccount-routingNumber-input",
+    "accNumber": "#bankaccount-accountNumber-input",
+    "saveBtn": "[data-test='bankaccount-submit']",
+    "deleteBtn": "[data-test='bankaccount-delete']:last-of-type",
+    "accountListItem": "[data-test^='bankaccount-list']",
+    "accountText": "p.MuiTypography-body1"
+  }
+}
