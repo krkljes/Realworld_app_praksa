@@ -8,18 +8,21 @@ const screenshotDir = "./screenshots";
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 
+// Describe a test suite for Login
 describe('Login Tests', function () {
   let driver;
   let loginPage;
 
+  // Before running the test suite, set up the WebDriver and pages
   beforeEach(async function () {
     // Initialize the WebDriver and open the browser
     driver = DriverFactory.createDriver('chrome'); //Browser choice - chrome, firefox, edge
     loginPage = new LoginPage(driver);
   });
 
-   // After each test case, check if it failed and take a screenshot
-   afterEach(async function () {
+  
+  // After each test case, check if it failed and take a screenshot
+  afterEach(async function () {
     if (this.currentTest.state === "failed") {
       await loginPage.takeScreenshot(this.currentTest.title, screenshotDir);
     }
@@ -54,8 +57,8 @@ describe('Login Tests', function () {
     await loginPage.tryInvalidLogin();
 
     // Add assertions to verify the Login failed
-    const errorText = await loginPage.getText(loginPage.errorField);
-    expect(errorText).to.equal(loginPage.errorMsg, "Unsuccessful Login Process Test failed");
+    const errorText = await driver.findElement(loginPage.errorField);
+    await loginPage.expectTextToEqual(errorText, "Username or password is invalid", 5000);
 
     // Additional context
     addContext(this, 'Test Case Title: Unsuccessful Login Process Test');

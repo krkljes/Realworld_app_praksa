@@ -1,13 +1,13 @@
-const { until, Key } = require("selenium-webdriver");
+const { Key, until } = require("selenium-webdriver");
 const fs = require("fs");
-const path = require("path");
+const path = require('path');
 
 // BasePage class for common Selenium WebDriver actions
 class BasePage {
   constructor(driver) {
     this.driver = driver;
   }
-
+  
   // Method to navigate to a specified URL
 
    async navigateTo(url) {

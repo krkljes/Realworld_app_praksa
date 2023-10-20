@@ -46,7 +46,6 @@ class SignUpPage extends BasePage {
     await this.sendKeys(this.password, this.invalidSignup.password);
     await this.sendKeys(this.confirmPass, this.invalidSignup.confirmPassword);
   }
-
 }
 
 module.exports = SignUpPage;

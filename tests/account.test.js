@@ -27,6 +27,20 @@ describe('Account tests', function () {
       await accountPage.takeScreenshot(this.currentTest.title, screenshotDir);
     }
   });
+  
+    // After each test case, check if it failed and take a screenshot
+  afterEach(async function () {
+    if (this.currentTest.state === "failed") {
+      await accountPage.takeScreenshot(this.currentTest.title, screenshotDir);
+    }
+  });
+
+   // After each test case, check if it failed and take a screenshot
+  afterEach(async function () {
+    if (this.currentTest.state === "failed") {
+      await accountPage.takeScreenshot(this.currentTest.title, screenshotDir);
+    }
+  });
 
   afterEach(async function () {
     // Quit the WebDriver after the test is complete
