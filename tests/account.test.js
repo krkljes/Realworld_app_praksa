@@ -11,11 +11,21 @@ const expect = chai.expect;
 
 describe('Account tests', function () {
   let driver;
+  let loginPage;
+  let accountPage;
 
   beforeEach(async function () {
     // Initialize the WebDriver and open the browser
-    const browserName = 'chrome'; //Browser choice - chrome, firefox, edge
-    driver = DriverFactory.createDriver(browserName);
+    driver = DriverFactory.createDriver('chrome'); //Browser choice - chrome, firefox, edge
+    loginPage = new LoginPage(driver);
+    accountPage = new AccountPage(driver);
+  });
+
+   // After each test case, check if it failed and take a screenshot
+   afterEach(async function () {
+    if (this.currentTest.state === "failed") {
+      await accountPage.takeScreenshot(this.currentTest.title, screenshotDir);
+    }
   });
   
     // After each test case, check if it failed and take a screenshot
@@ -38,8 +48,6 @@ describe('Account tests', function () {
   });
 
   it('Successful Bank Account Creation Process Test', async function () {
-    const loginPage = new LoginPage(driver);
-    const accountPage = new AccountPage(driver);
     // Perform login
     await loginPage.performLogin();
     // Create account
@@ -68,8 +76,6 @@ describe('Account tests', function () {
   });
 
   it('Successful Bank Account Deletion Process Test', async function () {
-    const loginPage = new LoginPage(driver);
-    const accountPage = new AccountPage(driver);
     // Perform login
     await loginPage.performLogin();
     // Delete account

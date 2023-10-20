@@ -4,18 +4,29 @@ const UserInfoPage = require('../pages/UserInfoPage');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const addContext = require('mochawesome/addContext');
+const screenshotDir = "./screenshots";
 
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 
 describe('User Info Edit Tests', function () {
   let driver;
+  let loginPage;
+  let userInfoPage;
 
   before(async function () {
     // Initialize the WebDriver and open the browser
-    const browserName = 'chrome'; //Browser choice - chrome, firefox, edge
-    driver = DriverFactory.createDriver(browserName);
+    driver = DriverFactory.createDriver('chrome'); //Browser choice - chrome, firefox, edge
+    loginPage = new LoginPage(driver);
+    userInfoPage = new UserInfoPage(driver);
+   
   });
+
+   // After each test case, check if it failed and take a screenshot
+   afterEach(async function () {
+    if (this.currentTest.state === "failed") {
+      await userInfoPage.takeScreenshot(this.currentTest.title, screenshotDir);
+    }
 
   after(async function () {
     // Quit the WebDriver after the test is complete
@@ -23,15 +34,12 @@ describe('User Info Edit Tests', function () {
   });
 
   it('Successful User Info Edit Test', async function () {
-    const loginPage = new LoginPage(driver);
-    const userInfoPage = new UserInfoPage(driver);
-
     // Perform login
     await loginPage.performLogin();
     await userInfoPage.editUserInfo();
     // Add assertions to verify successful user info edit
-    const actualText = await loginPage.getText(userInfoPage.userFullName);
-    expect(actualText).includes(userInfoPage.userCredentials.firstName, "User info edit was not successful");
+    const actualText = await driver.findElement(userInfoPage.userFullName);
+    await userInfoPage.expectTextToEqual(actualText, "User info edit was not successful");
 
     // Additional context
     addContext(this, 'Test Case Title: Successful User Info Edit Test');

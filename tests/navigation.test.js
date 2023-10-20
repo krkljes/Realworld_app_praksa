@@ -4,17 +4,28 @@ const LoginPage = require('../pages/LoginPage');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const addContext = require('mochawesome/addContext');
+const screenshotDir = "./screenshots";
 
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 
 describe('Navigation Test', function () {
   let driver;
+  let loginPage;
+  let navigationPage;
 
   before(async function () {
     // Initialize the WebDriver and open the browser
-    const browserName = 'chrome'; //Browser choice - chrome, firefox, edge
-    driver = DriverFactory.createDriver(browserName);
+    driver = DriverFactory.createDriver('chrome'); //Browser choice - chrome, firefox, edge
+    loginPage = new LoginPage(driver);
+    navigationPage = new NavigationPage(driver);
+  });
+
+   // After each test case, check if it failed and take a screenshot
+   afterEach(async function () {
+    if (this.currentTest.state === "failed") {
+      await navigationPage.takeScreenshot(this.currentTest.title, screenshotDir);
+    }
   });
 
   after(async function () {
@@ -23,8 +34,6 @@ describe('Navigation Test', function () {
   });
 
   it('Successful Navigation Through Application Test', async function () {
-    const loginPage = new LoginPage(driver);
-    const navigationPage = new NavigationPage(driver);
     // Perform login
     await loginPage.performLogin();
     // Navigate through website

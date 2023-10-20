@@ -4,18 +4,28 @@ const TransactionPage = require('../pages/TransactionPage');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const addContext = require('mochawesome/addContext');
+const screenshotDir = "./screenshots";
 
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 
 describe('Transaction tests', function () {
   let driver;
+  let loginPage;
+  let transactionPage;
 
   beforeEach(async function () {
     // Initialize the WebDriver and open the browser
-    const browserName = 'chrome'; //Browser choice - chrome, firefox, edge
-    driver = DriverFactory.createDriver(browserName);
+    driver = DriverFactory.createDriver('chrome'); //Browser choice - chrome, firefox, edge
+    loginPage = new LoginPage(driver);
+    transactionPage = new TransactionPage(driver);
   });
+
+   // After each test case, check if it failed and take a screenshot
+   afterEach(async function () {
+    if (this.currentTest.state === "failed") {
+      await transactionPage.takeScreenshot(this.currentTest.title, screenshotDir);
+    }
 
   afterEach(async function () {
     // Quit the WebDriver after the test is complete
@@ -23,9 +33,6 @@ describe('Transaction tests', function () {
   });
 
   it('Successful Payment Test', async function () {
-    const loginPage = new LoginPage(driver);
-    const transactionPage = new TransactionPage(driver);
-
     // Perform login
     await loginPage.performLogin();
     await transactionPage.createNewPayment();
@@ -53,16 +60,13 @@ describe('Transaction tests', function () {
   });
 
   it('Successful Transaction Request Test', async function () {
-    const loginPage = new LoginPage(driver);
-    const transactionPage = new TransactionPage(driver);
-
     // Perform login
     await loginPage.performLogin();
     await transactionPage.createNewTransactionRequest();
     // Add assertions to verify successful user info edit
     await loginPage.waitForElementToBeVisible(transactionPage.successMessageField);
-    const actualText = await loginPage.getText(transactionPage.successMessageField);
-    expect(actualText).includes(transactionPage.transactionData.success, "Transaction request was not successful");
+    const actualText = await driver.findElement(transactionPage.successMessageField);
+    await transactionPage.expectTextToEqual(actualText, "Transaction request was not successful");
 
     // Additional context
     addContext(this, 'Test Case Title: Successful Transaction Request Test');
