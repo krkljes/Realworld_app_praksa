@@ -8,7 +8,7 @@ class BasePage {
   constructor(driver) {
     this.driver = driver;
   }
-
+  
   // Method to navigate to a specified URL
   async navigateTo(url) {
     await this.driver.get(url); // Use the WebDriver to navigate to the given URL
