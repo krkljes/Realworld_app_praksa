@@ -17,6 +17,13 @@ describe('Account tests', function () {
     const browserName = 'chrome'; //Browser choice - chrome, firefox, edge
     driver = DriverFactory.createDriver(browserName);
   });
+  
+    // After each test case, check if it failed and take a screenshot
+  afterEach(async function () {
+    if (this.currentTest.state === "failed") {
+      await accountPage.takeScreenshot(this.currentTest.title, screenshotDir);
+    }
+  });
 
    // After each test case, check if it failed and take a screenshot
   afterEach(async function () {

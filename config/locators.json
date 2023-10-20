@@ -3,7 +3,8 @@
     "username": "#username",
     "password": "#password",
     "submit": "[data-test='signin-submit']",
-    "errorMessage": "[data-test='signin-error']"
+    "errorMessage": "[data-test='signin-error']",
+    "signOutBtn": "[data-test='sidenav-signout']"
   },
   "signUp": {
     "firstName": "#firstName",
@@ -23,5 +24,24 @@
     "deleteBtn": "[data-test='bankaccount-delete']:last-of-type",
     "accountListItem": "[data-test^='bankaccount-list']",
     "accountText": "p.MuiTypography-body1"
+  },
+  "newTransaction": {
+    "newBtn": "[data-test='nav-top-new-transaction']",
+    "payBtn": "[data-test='transaction-create-submit-payment']",
+    "requestBtn": "[data-test='transaction-create-submit-request']",
+    "paymentList": "[data-test='user-list-item-t45AiwidW']",
+    "amountInput": "#amount",
+    "noteInput": "#transaction-create-description-input",
+    "snackbarText": ".MuiAlert-message",
+    "return": "[data-test='new-transaction-return-to-transactions']"
+  },
+  "myAccount": {
+    "myAccBtn": "[data-test='sidenav-user-settings']",
+    "saveBtn": "[data-test='user-settings-submit']",
+    "firstName": "#user-settings-firstName-input",
+    "lastName": "#user-settings-lastName-input",
+    "email": "#user-settings-email-input",
+    "phoneNum": "#user-settings-phoneNumber-input",
+    "nameText": "[data-test='sidenav-user-full-name']"
   }
 }

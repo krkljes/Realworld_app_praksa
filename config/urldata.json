@@ -4,6 +4,8 @@
     "loginUrl": "http://localhost:3000/signin",
     "signUpUrl": "http://localhost:3000/signup",
     "bankAcc": "http://localhost:3000/bankaccounts",
-    "bankAccNew": "http://localhost:3000/bankaccounts/new"
+    "bankAccNew": "http://localhost:3000/bankaccounts/new",
+    "makeTransactionUrl": "http://localhost:3000/transaction/new",
+    "userSettingsUrl": "http://localhost:3000/user/settings"
   }
 }

@@ -1,5 +1,4 @@
-const { until, Key } = require('selenium-webdriver');
-const { expect } = require("chai");
+const { Key, until } = require("selenium-webdriver");
 const fs = require("fs");
 const path = require('path');
 
