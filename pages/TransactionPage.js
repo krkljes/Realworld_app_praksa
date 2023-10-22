@@ -40,6 +40,5 @@ class TransactionPage extends BasePage {
     await this.sendKeys(this.noteField, this.transactionData.note);
     await this.click(this.requestButton);
   }
-
 }
 module.exports = TransactionPage;

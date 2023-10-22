@@ -4,28 +4,37 @@ const LoginPage = require('../pages/LoginPage');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const addContext = require('mochawesome/addContext');
+const screenshotDir = "./screenshots";
 
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 
 describe('Notification test', function () {
   let driver;
+  let loginPage;
+  let notificationPage;
 
   beforeEach(async function () {
     // Initialize the WebDriver and open the browser
     const browserName = global.browserName || process.env.BROWSER_NAME || 'chrome'; //Browser choice - chrome, firefox, edge
     driver = DriverFactory.createDriver(browserName);
+    loginPage = new LoginPage(driver);
+    notificationPage = new NotificationPage(driver);
   });
 
+   // After each test case, check if it failed and take a screenshot
+   afterEach(async function () {
+    if (this.currentTest.state === "failed") {
+      await notificationPage.takeScreenshot(this.currentTest.title, screenshotDir);
+    }
+   });
+  
   afterEach(async function () {
     // Quit the WebDriver after the test is complete
     await driver.quit();
   });
 
   it('Successful Notification Dismissal Test', async function () {
-    const loginPage = new LoginPage(driver);
-    const notificationPage = new NotificationPage(driver);
-
     // Perform login
     await loginPage.performLogin();
     // Get the initial value

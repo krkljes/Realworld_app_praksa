@@ -4,17 +4,29 @@ const LoginPage = require('../pages/LoginPage');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const addContext = require('mochawesome/addContext');
+const screenshotDir = "./screenshots";
 
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 
 describe('Account tests', function () {
   let driver;
+  let loginPage;
+  let accountPage;
 
   beforeEach(async function () {
     // Initialize the WebDriver and open the browser
     const browserName = global.browserName || process.env.BROWSER_NAME || 'chrome';
     driver = DriverFactory.createDriver(browserName);
+    loginPage = new LoginPage(driver);
+    accountPage = new AccountPage(driver);
+  });
+
+   // After each test case, check if it failed and take a screenshot
+   afterEach(async function () {
+    if (this.currentTest.state === "failed") {
+      await accountPage.takeScreenshot(this.currentTest.title, screenshotDir);
+    }
   });
 
   afterEach(async function () {
@@ -23,8 +35,6 @@ describe('Account tests', function () {
   });
 
   it('Successful Bank Account Creation Process Test', async function () {
-    const loginPage = new LoginPage(driver);
-    const accountPage = new AccountPage(driver);
 
     // Perform login
     await loginPage.performLogin();
@@ -54,8 +64,6 @@ describe('Account tests', function () {
   });
 
   it('Successful Bank Account Deletion Process Test', async function () {
-    const loginPage = new LoginPage(driver);
-    const accountPage = new AccountPage(driver);
 
     // Perform login
     await loginPage.performLogin();
