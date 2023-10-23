@@ -6,6 +6,7 @@ const addContext = require('mochawesome/addContext');
 
 chai.use(chaiAsPromised);
 const expect = chai.expect;
+const credentials = require('../utils/credentials.json');
 
 describe('Signup Process Tests', function () {
   let driver;
@@ -21,57 +22,43 @@ describe('Signup Process Tests', function () {
     await driver.quit();
   });
 
-  it('Successful Signup Process Test', async function () {
-    const signUpPage = new SignUpPage(driver);
+  for (const signupKey in credentials.validSignups) {
+    if (credentials.validSignups.hasOwnProperty(signupKey)) {
+      it(`Successful Signup Process Test - ${signupKey}`, async function () {
+        const signUpPage = new SignUpPage(driver);
+        const signupData = credentials.validSignups[signupKey];
 
-    // Perform signup
-    await signUpPage.performSignUp();
+        // Perform signup with the data from credentials.json
+        await signUpPage.performSignUp(signupData);
 
-    // Add assertions to verify successful signup
-    const currentUrl = await driver.getCurrentUrl();
-    expect(currentUrl).to.equal(signUpPage.loginUrl, "Sign up was not successful");
+        // Add assertions to verify successful signup
+        const currentUrl = await driver.getCurrentUrl();
+        expect(currentUrl).to.equal(signUpPage.loginUrl, "Sign up was not successful");
 
-    // Additional context
-    addContext(this, 'Test Case Title: Successful Signup Process Test');
-    addContext(this, 'Test Case Description: Verify that a user can successfully sign up for an account on the website');
-    // Test Steps:
-    addContext(this, 'Step 1: Open the web browser');
-    addContext(this, 'Step 2: Navigate to the website\'s homepage (' + signUpPage.baseUrl + ')');
-    addContext(this, 'Step 3: Click on the "Don\'t have an account? Sign Up" link');
-    addContext(this, 'Step 4: Verify that the signup page is displayed');
-    addContext(this, 'Step 5: Enter a valid first name (' + signUpPage.validSignup.firstName + ') in the first name input field');
-    addContext(this, 'Step 6: Enter a valid last name (' + signUpPage.validSignup.lastName + ') in the last name input field');
-    addContext(this, 'Step 7: Enter a valid username (' + signUpPage.validSignup.username + ') in the username input field');
-    addContext(this, 'Step 8: Enter a valid password (' + signUpPage.validSignup.password + ') in the password input field');
-    addContext(this, 'Step 9: Enter the same password (' + signUpPage.validSignup.confirmPassword + ') in the password confirmation input field');
-    addContext(this, 'Step 10: Click on the "SIGN UP" button');
-    addContext(this, 'Step 11: Wait for the URL to match (' + signUpPage.loginUrl + ')');
-  });
+        // Additional context
+        addContext(this, 'Test Case Title: Successful Signup Process Test');
+        // Add more context as needed
+      });
+    }
+  }
 
-  it('Unsuccessful Signup Process Test', async function () {
-    const signUpPage = new SignUpPage(driver);
+  for (const signupKey in credentials.invalidSignups) {
+    if (credentials.invalidSignups.hasOwnProperty(signupKey)) {
+      it(`Unsuccessful Signup Process Test - ${signupKey}`, async function () {
+        const signUpPage = new SignUpPage(driver);
+        const signupData = credentials.invalidSignups[signupKey];
 
-    // Try to signup with invalid credentials
-    await signUpPage.tryInvalidSignUp();
+        // Try to signup with invalid credentials
+        await signUpPage.tryInvalidSignUp(signupData);
 
-    // Add assertions to verify the signup failed
-    const signUpButton = await driver.findElement(signUpPage.singUpBtn);
-    expect(await signUpButton.getAttribute('disabled')).to.equal('true', 'Signup button is not disabled for invalid signup');
+        // Add assertions to verify the signup failed
+        const signUpButton = await driver.findElement(signUpPage.singUpBtn);
+        expect(await signUpButton.getAttribute('disabled')).to.equal('true', 'Signup button is not disabled for invalid signup');
 
-    // Additional context
-    addContext(this, 'Test Case Title: Unsuccessful Signup Process Test');
-    addContext(this, 'Test Case Description: Verify that the signup process fails when a user attempts to sign up with invalid or incorrect information on the website.');
-    // Test Steps:
-    addContext(this, 'Step 1: Open the web browser');
-    addContext(this, 'Step 2: Navigate to the website\'s homepage (' + signUpPage.baseUrl + ')');
-    addContext(this, 'Step 3: Click on the "Don\'t have an account? Sign Up" link');
-    addContext(this, 'Step 4: Verify that the signup page is displayed');
-    addContext(this, 'Step 5: Enter a valid first name (' + signUpPage.invalidSignup.firstName + ') in the first name input field');
-    addContext(this, 'Step 6: Enter a valid last name (' + signUpPage.invalidSignup.lastName + ') in the last name input field');
-    addContext(this, 'Step 7: Enter a valid username (' + signUpPage.invalidSignup.username + ') in the username input field');
-    addContext(this, 'Step 8: Enter a valid password (' + signUpPage.invalidSignup.password + ') in the password input field');
-    addContext(this, 'Step 9: Enter the same password (' + signUpPage.invalidSignup.confirmPassword + ') in the password confirmation input field');
-    addContext(this, 'Step 10: Verify that the "SIGN UP" button is disabled');
-  });
-
+        // Additional context
+        addContext(this, 'Test Case Title: Unsuccessful Signup Process Test');
+        // Add more context as needed
+      });
+    }
+  }
 });
